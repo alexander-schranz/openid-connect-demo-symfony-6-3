@@ -6,3 +6,7 @@ services:
     ports:
       - "5432"
 ###< doctrine/doctrine-bundle ###
+  keycloak:
+    ports:
+      - "8080:8080"
+    command: start-dev
