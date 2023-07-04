@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <h1>Profile</h1>
+
+    <a href="{{ path('app_logout') }}">Logout</a>
+
+    <pre>
+        {{- dump(app.user) -}}
+    </pre>
+{% endblock %}

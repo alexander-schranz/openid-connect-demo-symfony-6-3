@@ -4,7 +4,7 @@ services:
 ###> doctrine/doctrine-bundle ###
   database:
     ports:
-      - "5432"
+      - "5432:5433"
 ###< doctrine/doctrine-bundle ###
   keycloak:
     ports:
