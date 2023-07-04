@@ -14,6 +14,12 @@ services:
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/postgresql/data:rw
 ###< doctrine/doctrine-bundle ###
+  keycloak:
+    image: quay.io/keycloak/keycloak:${KEYCLOAK_VERSION:-21.1.2}
+    environment:
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN:-admin}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:-admin}
+    command: start
 
 volumes:
 ###> doctrine/doctrine-bundle ###
