@@ -13,6 +13,7 @@ security:
             security: false
         main:
             lazy: true
+            # provider: users_in_memory
             provider: app_user_provider
             form_login:
                 login_path: app_login
@@ -22,12 +23,26 @@ security:
                 path: app_logout
                 # where to redirect after logout
                 # target: app_any_route
+            access_token:
+                token_handler:
+                    #oidc_user_info:
+                    #    claim: email
+                    #    base_uri: '%env(OIDC_BASE_URI)%'
+                    #    # client: oidc.client # custom http client
+                    oidc:
+                        #claim: email
+                        audience: 'My audience'
+                        issuers: []
+                        algorithm: '%env(OIDC_ALGORITHM)%'
+                        key: '%env(OIDC_KEY)%'
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
+
+#bLGVxQdIcS1IrFQ4nLZwBvMMj4VNqO3e
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used

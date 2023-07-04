@@ -20,9 +20,7 @@
         <label for="password">Password</label>
         <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
 
-        <input type="hidden" name="_csrf_token"
-               value="{{ csrf_token('authenticate') }}"
-        >
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
         {#
             Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -39,4 +37,20 @@
             Sign in
         </button>
     </form>
+
+    <div>
+        <hr><br>
+        <a href="{{ LOGIN_URL }}?redirect_uri={{ app.request.uri }}">
+            Login with Keycloak
+        </a>
+    </div>
+
+    <div>
+        <br>
+        <hr>
+
+        <pre>
+            {{- dump(app.user) -}}
+        </pre>
+    </div>
 {% endblock %}

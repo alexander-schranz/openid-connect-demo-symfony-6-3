@@ -8,3 +8,7 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+keystore.p12
+# generated via openssl pkcs12 -in keystore.p12 -nocerts > privateKey.pem
+privateKey.pem
