@@ -24,19 +24,17 @@ security:
                 # where to redirect after logout
                 # target: app_any_route
             access_token:
+                token_extractors: security.access_token_handler.oidc_code.token_extractor
                 token_handler:
-                    #oidc_user_info:
-                    #    claim: email
-                    #    base_uri: '%env(OIDC_BASE_URI)%'
-                    #    # client: oidc.client # custom http client
-                    oidc:
+                    oidc_code:
                         claim: email
-                        audience: 'symfony-client-id'
-                        issuers: [
-                            '%env(OIDC_ISSUER)%'
-                        ]
-                        algorithm: '%env(OIDC_ALGORITHM)%'
-                        key: '%env(OIDC_KEY)%' # get one from http://127.0.0.1:8080/realms/master/protocol/openid-connect/certs
+                        base_uri: '%env(OIDC_BASE_URI)%'
+                        client_id: '%env(OIDC_CLIENT_ID)%'
+                        client_secret: '%env(OIDC_CLIENT_SECRET)%'
+                        redirect_uri: '%env(OIDC_REDIRECT_URI)%'
+                        scope: openid
+                        code_challenge: true
+                    #    # client: oidc.client # custom http client
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -44,12 +42,11 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
-#bLGVxQdIcS1IrFQ4nLZwBvMMj4VNqO3e
-
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: ^/oidc-auth-redirect, roles: PUBLIC_ACCESS }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/, roles: ROLE_USER }
 

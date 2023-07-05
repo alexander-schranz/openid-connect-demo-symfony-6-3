@@ -25,9 +25,6 @@ class UserProvider implements UserProviderInterface, AttributesBasedUserProvider
      */
     public function loadUserByIdentifier(string $identifier, array $attributes = []): UserInterface
     {
-        dump($attributes); // TODO handle AttributesBasedUserProviderInterface
-        exit;
-
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $identifier]);
 
         if (!$user) {

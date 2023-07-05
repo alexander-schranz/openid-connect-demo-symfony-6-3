@@ -3,3 +3,7 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+app_oidc_login:
+    controller: security.access_token_handler.main.redirect_controller
+    path: /oidc-auth-redirect

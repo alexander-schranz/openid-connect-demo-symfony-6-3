@@ -40,7 +40,12 @@
 
     <div>
         <hr><br>
-        <a href="{{ LOGIN_URL }}&response_mode=fragment&response_type=code&scope=openid&redirect_uri={{ app.request.getSchemeAndHttpHost() }}&state={{ state }}&nonce={{ nonce }}&code_challenge={{ code_challenge }}&code_challenge_method=S256">
+
+        {#
+        <a href="{{ LOGIN_URL }}&response_type=code&scope=openid&redirect_uri={{ app.request.getSchemeAndHttpHost() }}&state={{ state }}&nonce={{ nonce }}&code_challenge={{ code_challenge }}&code_challenge_method=S256">
+        #}
+
+        <a href="{{ path('app_oidc_login') }}">
             Login with Keycloak
         </a>
     </div>

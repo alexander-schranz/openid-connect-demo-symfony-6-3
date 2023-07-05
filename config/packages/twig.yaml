@@ -1,7 +1,5 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
-    globals:
-        LOGIN_URL: '%env(OIDC_LOGIN_URI)%'
 
 when@test:
     twig:
