@@ -30,11 +30,13 @@ security:
                     #    base_uri: '%env(OIDC_BASE_URI)%'
                     #    # client: oidc.client # custom http client
                     oidc:
-                        #claim: email
-                        audience: 'My audience'
-                        issuers: []
+                        claim: email
+                        audience: 'symfony-client-id'
+                        issuers: [
+                            '%env(OIDC_ISSUER)%'
+                        ]
                         algorithm: '%env(OIDC_ALGORITHM)%'
-                        key: '%env(OIDC_KEY)%'
+                        key: '%env(OIDC_KEY)%' # get one from http://127.0.0.1:8080/realms/master/protocol/openid-connect/certs
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
