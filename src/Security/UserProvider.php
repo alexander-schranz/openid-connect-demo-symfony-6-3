@@ -6,10 +6,11 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
+use Symfony\Component\Security\Core\User\AttributesBasedUserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-class UserProvider implements UserProviderInterface
+class UserProvider implements UserProviderInterface, AttributesBasedUserProviderInterface
 {
     public function __construct(
         private EntityManagerInterface $entityManager,
@@ -22,7 +23,7 @@ class UserProvider implements UserProviderInterface
      *
      * @throws UserNotFoundException if the user is not found
      */
-    public function loadUserByIdentifier(string $identifier): UserInterface
+    public function loadUserByIdentifier(string $identifier, array $attributes = []): UserInterface
     {
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $identifier]);
 
